@@ -1,0 +1,169 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --panel-2: #334155;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --user-bubble: #3b82f6;
+  --bot-bubble: #334155;
+  --error: #ef4444;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.screen { flex: 1; display: flex; flex-direction: column; }
+.hidden { display: none !important; }
+
+/* ---- Авторизация ---- */
+#auth-screen { justify-content: center; align-items: center; padding: 1rem; }
+
+.card {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+
+.card h1 { text-align: center; margin-bottom: .25rem; }
+.subtitle { text-align: center; color: var(--muted); margin-bottom: 1.5rem; font-size: .9rem; }
+
+#auth-form label { display: flex; flex-direction: column; margin-bottom: 1rem; }
+#auth-form span { font-size: .8rem; color: var(--muted); margin-bottom: .35rem; }
+#auth-form input {
+  background: var(--panel-2);
+  border: 1px solid #475569;
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  color: var(--text);
+  font-size: .95rem;
+}
+#auth-form input:focus { outline: none; border-color: var(--accent); }
+
+.auth-buttons { display: flex; gap: .5rem; margin-top: .5rem; }
+.auth-buttons button {
+  flex: 1;
+  padding: .75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: .95rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+#login-btn { background: var(--accent); color: #fff; }
+#login-btn:hover { background: var(--accent-hover); }
+#register-btn { background: var(--panel-2); color: var(--text); }
+#register-btn:hover { background: #475569; }
+
+.error { color: var(--error); font-size: .85rem; margin-top: .75rem; min-height: 1.1em; text-align: center; }
+
+/* ---- Чат ---- */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .9rem 1rem;
+  background: var(--panel);
+  border-bottom: 1px solid #334155;
+}
+.user-info { font-size: .9rem; color: var(--muted); }
+#logout-btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: none;
+  padding: .45rem .9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .85rem;
+}
+#logout-btn:hover { background: #475569; }
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.msg {
+  max-width: 78%;
+  padding: .65rem .9rem;
+  border-radius: 14px;
+  font-size: .95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.msg.user  { align-self: flex-end; background: var(--user-bubble); color: #fff; border-bottom-right-radius: 4px; }
+.msg.bot   { align-self: flex-start; background: var(--bot-bubble);  color: var(--text); border-bottom-left-radius: 4px; }
+.msg .meta { display: block; font-size: .65rem; opacity: .7; margin-top: .25rem; }
+
+/* ---- Бейджи статуса сообщения ---- */
+.status-badge {
+  display: inline-block;
+  font-size: .68rem;
+  padding: .15rem .5rem;
+  border-radius: 8px;
+  margin-top: .3rem;
+  font-weight: 500;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+.status-queued  { background: rgba(148, 163, 184, .25); color: #94a3b8; }
+.status-typing  { background: rgba(59, 130, 246, .25);  color: #60a5fa; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+
+.message-form {
+  display: flex;
+  gap: .5rem;
+  padding: 1rem;
+  background: var(--panel);
+  border-top: 1px solid #334155;
+}
+#message-input {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid #475569;
+  border-radius: 10px;
+  padding: .75rem .9rem;
+  color: var(--text);
+  font-size: .95rem;
+}
+#message-input:focus { outline: none; border-color: var(--accent); }
+#send-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: .75rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+}
+#send-btn:hover { background: var(--accent-hover); }
+#send-btn:disabled { opacity: .6; cursor: not-allowed; }

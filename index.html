@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Чат-бот</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Экран авторизации -->
+    <section id="auth-screen" class="screen">
+      <div class="card">
+        <h1>Чат-бот</h1>
+        <p class="subtitle">Войдите, чтобы начать общение</p>
+
+        <form id="auth-form">
+          <label>
+            <span>Email</span>
+            <input type="email" id="email" required autocomplete="email" />
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input type="password" id="password" required autocomplete="current-password" />
+          </label>
+          <div class="auth-buttons">
+            <button type="submit" id="login-btn">Войти</button>
+            <button type="button" id="register-btn">Регистрация</button>
+          </div>
+          <p id="auth-error" class="error"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Экран чата -->
+    <section id="chat-screen" class="screen hidden">
+      <header class="chat-header">
+        <div class="user-info">
+          <span id="user-email"></span>
+        </div>
+        <button id="logout-btn">Выйти</button>
+      </header>
+
+      <div id="messages" class="messages"></div>
+
+      <form id="message-form" class="message-form">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Напишите сообщение..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="send-btn">Отправить</button>
+      </form>
+      <p id="chat-error" class="error"></p>
+    </section>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
